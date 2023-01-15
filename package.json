@@ -1,0 +1,39 @@
+{
+  "name": "digital-restaurant",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Digital catalog of a restaurant.",
+  "author": "Spirit Digital Agency",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^3.0.6",
+    "@chakra-ui/icons": "^2.0.15",
+    "@chakra-ui/react": "^2.4.1",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@portabletext/react": "^1.0.6",
+    "framer-motion": "^7.3.5",
+    "gatsby": "^4.23.0",
+    "gatsby-plugin-image": "^2.23.0",
+    "gatsby-plugin-layout": "^3.23.0",
+    "gatsby-plugin-sanity-image": "^0.13.3",
+    "gatsby-plugin-sharp": "^4.23.0",
+    "gatsby-source-sanity": "^7.4.2",
+    "gatsby-transformer-sharp": "^4.23.0",
+    "greek-utils": "^1.3.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-scroll": "^1.8.9",
+    "react-sticky-box": "^1.0.2",
+    "react-ui-scrollspy": "^2.2.0"
+  }
+}
