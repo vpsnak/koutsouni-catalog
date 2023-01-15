@@ -1,0 +1,28 @@
+{
+  "name": "koutsouni-product-catalog",
+  "private": true,
+  "version": "1.0.0",
+  "main": "package.json",
+  "author": "Spirit Digital Agency <support@spiritdigital.agency>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy && sanity graphql deploy -y"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/document-internationalization": "^1.0.2",
+    "@sanity/vision": "^3.1.2",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.3.1",
+    "sanity": "^3.1.2",
+    "styled-components": "^5.2.0"
+  },
+  "devDependencies": {}
+}
