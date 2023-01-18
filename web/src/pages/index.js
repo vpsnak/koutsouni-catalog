@@ -7,36 +7,15 @@ import StickyBox from "react-sticky-box";
 import ScrollSpy from "react-ui-scrollspy";
 import "./style.css";
 import {NotFound} from "../components/UI/atoms/NotFound";
-import 'greek-utils';
+import {useCategories,useProductSearch} from '../hooks'
 const IndexPage = ({data}) => {
-    const {allSanityProduct, allSanityCategory} = data
-    const [products, setProducts] = useState(allSanityProduct.nodes)
-    const [categories, setCategories] = useState(allSanityCategory.nodes)
-    const [productFound, setProductFound] = useState(false)
-    const greekUtils = require('greek-utils');
-    const handleSearch = term => {
-        if (term.length) {
-            const searchInputFilteredProducts = allSanityProduct.nodes.filter(prod => {
-                if (greekUtils.sanitizeDiacritics(prod.title.toLowerCase()).includes(greekUtils.sanitizeDiacritics(term.toLowerCase())) ||
-                    greekUtils.sanitizeDiacritics(prod.title.toLowerCase()).includes(greekUtils.toGreek(term.toLowerCase()))){
-                    return true;
-                }
-            })
-            const productCategories = searchInputFilteredProducts.flatMap(product => product.category.map(category => category.title))
-            const filteredCategories = allSanityCategory.nodes.filter(category => productCategories.includes(category.title))
-            setProducts(searchInputFilteredProducts)
-            setCategories(filteredCategories)
-            setProductFound(searchInputFilteredProducts.length ? false : true)
-        } else {
-            setProducts(allSanityProduct.nodes)
-            setCategories(allSanityCategory.nodes)
-        }
-    }
+    const [query, setQuery] = useState('')
+    const products = useProductSearch(query)
+    const categories = useCategories(products)
 
     return <React.Fragment>
-        <SimpleGrid columns={3}>
-            <Box display={"flex"}
-                 alignItems={"flex-start"}>
+        <SimpleGrid columns={3} gap={3}>
+            <Box>
                 <StickyBox>
                     <CategoryList categories={categories}/>
                 </StickyBox>
@@ -45,7 +24,7 @@ const IndexPage = ({data}) => {
                       bg={"white"}
                       p={"16px 24px"}
                       borderRadius={"8px"}>
-                <SearchInput onChange={handleSearch}/>
+                <SearchInput onChange={query => setQuery(query)}/>
                 <ScrollSpy>
                     {categories && categories.map(category =>
                         <ProductList key={category.title}
@@ -53,8 +32,7 @@ const IndexPage = ({data}) => {
                                      products={products.filter(product => product.category.map(category => category.title).includes(category.title))}/>
                     )}
                 </ScrollSpy>
-                {productFound &&
-                    <NotFound/>}
+                {!products.length && <NotFound/>}
             </GridItem>
         </SimpleGrid>
     </React.Fragment>
@@ -63,28 +41,10 @@ const IndexPage = ({data}) => {
 export default IndexPage
 
 export const query = graphql`{
-  allSanityProduct(filter: {stock_status: {ne: "outofstock"}}) {
-    nodes {
-      _id
-      title
-      price
-      b2b_price
-      category {
+    allSanityCategory {
+      nodes {
         title
       }
-      _rawDescription
-      image {
-        asset {
-          _id
-          url
-        }
-      }
     }
-  }
-  allSanityCategory {
-    nodes {
-      title
-    }
-  }
 }
 `

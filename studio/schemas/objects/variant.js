@@ -7,41 +7,32 @@ export default {
 			name: 'sku',
 			title: 'Sku',
 			type: 'string',
+			readOnly: true,
 		},
 		{
-			name: 'option_1',
-			title: 'Option 1',
+			name: 'color',
+			title: 'Color',
 			type: 'string',
 		},
 		{
-			name: 'option_2',
-			title: 'Option 2',
+			name: 'size',
+			title: 'Size',
 			type: 'string',
 		},
 		{
-			name: 'option_3',
-			title: 'Option 3',
-			type: 'string',
+			name: 'inventory',
+			title: 'Inventory',
+			type: 'inventory',
 		},
 		{
-			name: 'stock_status',
-			title: 'Stock Status',
-			type: 'string',
+			name: 'price',
+			title: 'Price',
+			type: 'number',
 		},
-    {
-      name: 'quantity',
-      title: 'Quantity',
-      type: 'number',
-    },
-    {
-      name: 'price',
-      title: 'Price',
-      type: 'number',
-    },
-    {
-      name: 'b2b_price',
-      title: 'B2B Price',
-      type: 'number',
-    },
+		{
+			name: 'b2b',
+			title: 'B2B',
+			type: 'b2b',
+		},
 	]
 }

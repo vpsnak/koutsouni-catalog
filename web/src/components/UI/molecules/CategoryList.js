@@ -24,7 +24,7 @@ const CategoryList = ({categories}) =>
                               smooth={true}
                               to={category.title}>
                             <Text cursor={"pointer"}>
-                                {category.title}
+                              {category.title}
                             </Text>
                         </Link>
                     </ListItem>

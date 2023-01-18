@@ -34,18 +34,18 @@ const ProductCard = ({product, line}) => {
                   mb={'8px'}>
                 <ModuleSerializer blocks={product._rawDescription}/>
             </Text>
-            <Box display="flex"
+            {product.display_price && <Box display="flex"
                  direction="row"
                  fontSize={'14px'}
                  fontWeight={'400'}
                  lineHeight={'20px'}
-                 color={'#333333'}>Απο <Price price={product.price}/></Box>
-            {product.b2b_price > 0 && <Box display="flex"
+                 color={'#333333'}>B2C: <Price price={product.display_price}/></Box>}
+            {product.display_b2b_price && <Box display="flex"
                  direction="row"
                  fontSize={'14px'}
                  fontWeight={'400'}
                  lineHeight={'20px'}
-                 color={'#333333'}>B2B: <Price price={product.b2b_price}/></Box>}
+                 color={'#333333'}>B2B: <Price price={product.display_b2b_price}/></Box>}
         </Box>
         <SanityImage boxSize={'112px'}
                      width={105}
@@ -57,13 +57,11 @@ const ProductCard = ({product, line}) => {
             <ModalOverlay/>
             <ModalContent borderRadius={"9px"}>
                 <ModalHeader p={"0px"}>
-                    {product.image && <Image boxSize={'700px'}
-                           maxH={'400px'}
-                           objectFit={'cover'}
+                    {product.image && <SanityImage height={250}
                            borderRadius={'8px'}
                            borderBottomLeftRadius={"0px"}
                            borderBottomRightRadius={"0px"}
-                           src={product.image.asset.url}></Image>}
+                           image={product.image}></SanityImage>}
                 </ModalHeader>
                 <ModalCloseButton borderRadius={"50%"} bg={"white"} size={"35px"} color boxSize={"30px"}/>
                 <ModalBody>
@@ -79,6 +77,20 @@ const ProductCard = ({product, line}) => {
                           mb={'8px'}>
                         <ModuleSerializer blocks={product._rawDescription}/>
                     </Text>
+                    {!!product.variants?.length && product.variants.map(variant => {
+                        return <div>
+                            <div>{variant.sku}</div>
+                            <div>{variant.color}</div>
+                            <div>{variant.size}</div>
+                            <div>{variant.inventory.quantity}</div>
+                            <div>{variant.inventory.stock_status}</div>
+                        </div>
+                    })}
+                    {!product.variants?.length && <div>
+                        <div>{product.sku}</div>
+                        <div>{product.inventory.quantity}</div>
+                        <div>{product.inventory.stock_status}</div>
+                    </div>}
                 </ModalBody>
             </ModalContent>
         </Modal>

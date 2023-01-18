@@ -17,8 +17,7 @@ const Header = () => {
 		<Box>
 				<SanityImage image={banner}
 										 width={915}
-										 maxH={'350px'}
-										 objectFit={'cover'}
+										 height={350}
 										 borderTopLeftRadius={8}
 										 borderTopRightRadius={8}
 										 borderBottomLeftRadius={4}

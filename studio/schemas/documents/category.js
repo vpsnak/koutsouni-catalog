@@ -13,10 +13,26 @@ export default {
 			name: 'title',
 			title: 'Title',
 			type: 'string',
+			readOnly: true,
 			validation: Rule => [
         Rule.required()
 			],
       group: 'general',
+		},
+		{
+			name: 'parent',
+			type: 'reference',
+			group: 'general',
+			to: [{type: 'category'}],
+			options: {
+				filter: '!defined(parent)',
+			},
+		},
+		{
+			title: 'Should appear in filters?',
+			name: 'is_filter',
+			type: 'boolean',
+			group: 'general',
 		},
     {
       name: 'description',
@@ -24,5 +40,18 @@ export default {
       type: 'editor',
       group: 'general'
     },
-	]
+	],
+	initialValue: {
+		is_filter: false
+	},
+	preview: {
+		select: {
+			title: 'title',
+			subtitle: 'parent.title',
+		},
+		prepare: ({title, subtitle}) => ({
+			title,
+			subtitle: subtitle ? `– ${subtitle}` : ``,
+		}),
+	},
 }

@@ -32,34 +32,38 @@ export default {
 			name: 'sku',
 			title: 'Sku',
 			type: 'string',
+			readOnly: true,
 			validation: Rule => [
         Rule.required()
 			],
       group: 'general',
 		},
 		{
-			name: 'stock_status',
-			title: 'Stock Status',
+			name: 'brand',
+			title: 'Brand',
 			type: 'string',
-			group: 'inventory',
-		},
-		{
-			name: 'quantity',
-			title: 'Quantity',
-			type: 'number',
-			group: 'inventory',
+			group: 'general',
 		},
     {
-      name: 'price',
-      title: 'Price',
-      type: 'number',
-      group: 'general'
+      name: 'inventory',
+      title: 'Inventory',
+      type: 'inventory',
+      group: 'general',
+			hidden: ({document}) => document?.variants?.length > 0
     },
+		{
+			name: 'price',
+			title: 'Price',
+			type: 'number',
+			group: 'general',
+			hidden: ({document}) => document?.variants?.length > 0
+		},
     {
-      name: 'b2b_price',
-      title: 'B2B Price',
-      type: 'number',
-      group: 'general'
+      name: 'b2b',
+      title: 'B2B',
+      type: 'b2b',
+      group: 'general',
+			hidden: ({document}) => document?.variants?.length > 0
     },
     {
       name: 'description',
@@ -84,24 +88,6 @@ export default {
 			of: [{ type: 'image' }]
 		},
 		{
-			name: 'option_1',
-			title: 'Option 1',
-			type: 'string',
-			group: 'general'
-		},
-		{
-			name: 'option_2',
-			title: 'Option 2',
-			type: 'string',
-			group: 'general'
-		},
-		{
-			name: 'option_3',
-			title: 'Option 3',
-			type: 'string',
-			group: 'general'
-		},
-		{
 			name: 'variants',
 			title: 'Variants',
 			type: 'array',
@@ -121,5 +107,19 @@ export default {
 				}
 			]
 		},
-	]
+	],
+	preview: {
+		select: {
+			title: "title",
+			media: "image",
+			sku: "sku",
+			category: "category",
+		},
+		prepare({category, sku, ...props}){
+			return {
+				subtitle: sku,
+				...props
+			}
+		}
+	},
 }

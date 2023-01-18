@@ -4,15 +4,14 @@ import {Box} from '@chakra-ui/react'
 
 const SanityImage = ({image, width, height, ...props}) => {
   return <React.Fragment>
-    {image && <Box as={Image}
-                   {...image}
-                   objectFit={'contain'}
-                   maxW={'full'}
-                   loading={'lazy'}
-                   width={width}
-                   height={height}
-                   {...props}
-    />}
+    {image && <Box width={width}>
+      <Image
+        {...image}
+        width={width}
+        height={height}
+        {...props}
+      />
+    </Box>}
   </React.Fragment>
 }
 

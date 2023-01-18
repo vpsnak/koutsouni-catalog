@@ -3,7 +3,7 @@ import React from 'react'
 
 const Price = props => {
 	return <Box>
-		<Text ml={'4px'}>{props.price.toFixed(2)}€</Text>
+		<Text ml={'4px'}>{props.price}</Text>
 	</Box>
 }
 
