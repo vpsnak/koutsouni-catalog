@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity'
 import {deskTool} from 'sanity/desk'
 import {visionTool} from '@sanity/vision'
+import {vercelDeployTool} from 'sanity-plugin-vercel-deploy'
 import {i18nConfig, i18nLocalizeSchemas} from './schemas/i18n'
 import {documentI18n} from '@sanity/document-internationalization'
 import deskStructure from './parts/deskStructure'
@@ -18,6 +19,7 @@ export default defineConfig({
 			structure: deskStructure
 		}),
 		visionTool(),
+		vercelDeployTool(),
 	],
 	tools: (prev) => {
 		if (import.meta.env?.DEV) {
