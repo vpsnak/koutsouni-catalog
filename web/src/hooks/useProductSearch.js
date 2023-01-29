@@ -2,22 +2,26 @@ import {graphql, useStaticQuery} from 'gatsby'
 import greekUtils from 'greek-utils'
 import {useCallback} from 'react'
 
-const useProductSearch = query => {
+const useProductSearch = (query = '') => {
   const {allSanityProduct} = useStaticQuery(
     graphql`
       query {
         allSanityProduct(
           filter: {brand: {in: ["Baby Dutch", "Baby Cloud", "Nature Zoo"]}, status: {eq: true}}
+          sort: {fields: title}
         ) {
           nodes {
             _id
             sku
             title
             brand
+            price
+            b2b_price
             display_price
             display_b2b_price
             b2b {
               price
+              quantity
             }
             inventory{
               quantity
@@ -27,6 +31,7 @@ const useProductSearch = query => {
               sku
               color
               size
+              price
               b2b {
                 price
               }

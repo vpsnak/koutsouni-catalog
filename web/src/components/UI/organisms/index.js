@@ -1,0 +1,1 @@
+export {default as GenerateCatalog} from './GenerateCatalog'

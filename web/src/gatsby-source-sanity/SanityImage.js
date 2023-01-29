@@ -1,17 +1,18 @@
 import Image from 'gatsby-plugin-sanity-image'
 import React from 'react'
-import {Box} from '@chakra-ui/react'
+import {Flex} from '@chakra-ui/react'
 
 const SanityImage = ({image, width, height, ...props}) => {
   return <React.Fragment>
-    {image && <Box width={width}>
+    {image && <Flex itemID={'center'} justifyContent={'center'} height={height} {...props}>
       <Image
         {...image}
         width={width}
         height={height}
-        {...props}
+        htmlWidth={width}
+        htmlHeight={height}
       />
-    </Box>}
+    </Flex>}
   </React.Fragment>
 }
 

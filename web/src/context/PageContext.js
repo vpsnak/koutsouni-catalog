@@ -2,7 +2,7 @@ import React from 'react'
 
 export const PageContext = React.createContext({})
 
-const PageContextProvider = ({ children, value }) => {
+const PageContextProvider = ({children, value}) => {
   if (!value.i18n_lang) {
     value.i18n_lang = 'en_GB'
   }
@@ -14,4 +14,4 @@ const PageContextProvider = ({ children, value }) => {
 }
 
 export default PageContext
-export { PageContextProvider }
+export {PageContextProvider}

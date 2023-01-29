@@ -1,1 +1,1 @@
-export { default as SanityImage } from './SanityImage'
+export {default as SanityImage} from './SanityImage'

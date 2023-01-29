@@ -56,5 +56,5 @@ module.exports = {
   b2b_price_with_vat,
   display_price,
   display_b2b_price,
-  display_b2b_price_with_vat,
+  display_b2b_price_with_vat
 }

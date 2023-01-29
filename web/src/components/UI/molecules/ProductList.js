@@ -1,29 +1,18 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {ProductCard} from '../molecules'
-import {HStack, Text, VStack} from '@chakra-ui/react'
+import {Text, VStack} from '@chakra-ui/react'
 
 const ProductList = ({title, products}) => {
-    let num = 0;
 
-
-    return <React.Fragment>
-        <VStack id={title}>
-            <Text p={'12px 0'}
-                  borderBottom={'1px solid black'}
-                  fontSize={'16px'}
-                  lineHeight={'19px'}
-                  fontWeight={'700'}
-                  w={"100%"}>{title}</Text>
-            {products && products.map(product => {
-                num++;
-                if (num > 1){
-                    return <ProductCard line={true} key={product._id} product={product}/>
-                }else{
-                    return <ProductCard line={false} key={product._id} product={product}/>
-                }
-            })}
-        </VStack>
-    </React.Fragment>
+  return <VStack id={title} spacing={0}>
+    <Text p={'12px 0'}
+          borderBottom={'1px solid black'}
+          fontSize={'16px'}
+          lineHeight={'19px'}
+          fontWeight={'700'}
+          w={'100%'}>{title}</Text>
+    {products && products.map(product => <ProductCard key={product._id} product={product}/>)}
+  </VStack>
 }
 
 export default ProductList
