@@ -30,7 +30,8 @@ const ProductCard = ({product}) => {
       <Text fontSize={'14px'}
             fontWeight={'700'}
             lineHeight={'20px'}
-            mb={'8px'}>{product.title}</Text>
+            mb={'4px'}>{product.title}</Text>
+      <Text mb={'8px'}>Κωδ. {product.sku}</Text>
       <Text fontSize={'12px'}
             fontWeight={'400'}
             lineHeight={'17px'}

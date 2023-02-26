@@ -7,7 +7,7 @@ const useProductSearch = (query = '') => {
     graphql`
       query {
         allSanityProduct(
-          filter: {brand: {in: ["Baby Dutch", "Baby Cloud", "Nature Zoo"]}, status: {eq: true}}
+          filter: {brand: {in: ["Baby Dutch", "Baby Cloud"]}, status: {eq: true}}
           sort: {fields: title}
         ) {
           nodes {

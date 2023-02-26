@@ -10,7 +10,8 @@ const ProductList = ({title, products}) => {
           fontSize={'16px'}
           lineHeight={'19px'}
           fontWeight={'700'}
-          w={'100%'}>{title}</Text>
+          w={'100%'}
+          dangerouslySetInnerHTML={{ __html: title}}/>
     {products && products.map(product => <ProductCard key={product._id} product={product}/>)}
   </VStack>
 }

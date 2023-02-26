@@ -23,9 +23,7 @@ const CategoryList = ({categories}) =>
             <Link data-to-scrollspy-id={category.title}
                   smooth={true}
                   to={category.title}>
-              <Text cursor={'pointer'}>
-                {category.title}
-              </Text>
+              <Text cursor={'pointer'} dangerouslySetInnerHTML={{ __html: category.title}}/>
             </Link>
           </ListItem>
         )

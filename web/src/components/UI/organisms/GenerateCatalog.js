@@ -21,16 +21,18 @@ const GenerateCatalog = props => {
     worksheet.columns = [
       {header: 'Κωδικός', key: 'sku', width: 15},
       {header: 'Τίτλος', key: 'title', width: 70},
-      {header: 'Τιμή Λιανικής', key: 'price', width: 10},
-      {header: 'Τιμή Χονδρικής', key: 'b2b_price', width: 10}
+      {header: 'Κατηγορία', key: 'category', width: 20},
+      {header: 'Τιμή Λιανικής', key: 'price', width: 20},
+      {header: 'Τιμή Χονδρικής', key: 'b2b_price', width: 20}
     ]
     products.forEach(product => {
-      if (product.variants.length){
+      const category = product.category.pop()
+      if (product.variants.length) {
         product.variants.forEach(variant => {
-          worksheet.addRow({...product, ...variant, title: product.title + ' - Μέγεθος: ' + variant.size})
+          worksheet.addRow({...product, ...variant, category: category?.title.replace('&amp;','&'),  title: product.title + ' - Μέγεθος: ' + variant.size})
         })
-      }else {
-        worksheet.addRow(product)
+      } else {
+        worksheet.addRow({...product, category: category?.title.replace('&amp;','&')})
       }
     })
     workbook.xlsx.writeBuffer()
